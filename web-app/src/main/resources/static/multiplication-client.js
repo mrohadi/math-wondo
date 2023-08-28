@@ -1,6 +1,6 @@
 function updateMultiplication() {
     $.ajax({
-        url: "http://localhost:8080/api/multiplications/random",
+        url: "http://localhost:8080/api/multiplication/random",
     }).then(function(data) {
         // Cleans the form
         $("#attempt-form").find("input[name='result-attempt']").val("");
