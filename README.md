@@ -55,4 +55,4 @@ As a user of the application, I want to become more motivated to participate eve
 
 Logical view of the interactions between the two microservices: 
 
-![](./images/Event-drivent diagram.png "Scheme")
+![Event-Drivent Diagram](images/Event-drivent-diagram.png)
