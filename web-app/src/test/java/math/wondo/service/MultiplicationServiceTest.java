@@ -10,6 +10,8 @@ import static org.mockito.Mockito.verify;
 
 import java.util.List;
 import java.util.Optional;
+import math.wondo.event.EventDispatcher;
+import math.wondo.event.MultiplicationSolvedEvent;
 import math.wondo.model.Multiplication;
 import math.wondo.model.MultiplicationResultAttempt;
 import math.wondo.model.User;
@@ -38,6 +40,9 @@ public class MultiplicationServiceTest {
 
     @Mock
     private MultiplicationResultAttemptRespository attemptRepository;
+
+    @Mock
+    private EventDispatcher eventDispatcher;
 
     @Spy
     @InjectMocks
@@ -96,9 +101,15 @@ public class MultiplicationServiceTest {
         // when
         boolean result = multiplicationService.checkAttempt(resultAttempt);
 
+        MultiplicationSolvedEvent multiplicationSolvedEvent = new MultiplicationSolvedEvent(
+                verifiedAttempt.getId(),
+                verifiedAttempt.getUser().getId(),
+                verifiedAttempt.isCorrect());
+
         // then
         assertTrue(result);
         verify(attemptRepository).save(verifiedAttempt);
+        verify(eventDispatcher).send(multiplicationSolvedEvent);
     }
 
     @Test
