@@ -30,7 +30,7 @@ Create web app for multiplication game
 
 ##### User Story 2
 
-As a suser of the application, I want it to show me my last attempt, so I can see how good or bad I'm over time.
+As a user of the application, I want it to show me my last attempt, so I can see how good or bad I'm over time.
 
 ###### Goal
 
@@ -42,3 +42,17 @@ Add data persistence to store user attempt
 2. Expose a new REST endpoint to get the latest attempts for a given user.
 3. Create a new service (business logic) to retrieve those attempts.
 4. Show that attempt's history to the users on the web page after they send a new one.
+
+##### User Story 3
+
+As a user of the application, I want to become more motivated to participate every day, so I don't give up easily
+
+###### Acceptance Criteria
+
+1. Create gamification mechanism to motivated the user of the application
+2. Create Points, Badges, and Leaderbords to show user progression
+3. Implement Event-Drivent Architecture to seperate `Multiplication` service with `Gamification` service
+
+Logical view of the interactions between the two microservices: 
+
+![](./images/Event-drivent diagram.png "Scheme")
