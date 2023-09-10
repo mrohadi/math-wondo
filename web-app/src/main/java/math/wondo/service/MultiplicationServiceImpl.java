@@ -3,6 +3,8 @@ package math.wondo.service;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import math.wondo.event.EventDispatcher;
+import math.wondo.event.MultiplicationSolvedEvent;
 import math.wondo.model.Multiplication;
 import math.wondo.model.MultiplicationResultAttempt;
 import math.wondo.model.User;
@@ -23,6 +25,9 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
     @Autowired
     private MultiplicationResultAttemptRespository attemptRepository;
+
+    @Autowired
+    private EventDispatcher eventDispatcher;
 
     @Override
     public Multiplication createRandomMultiplication() {
@@ -52,6 +57,11 @@ public class MultiplicationServiceImpl implements MultiplicationService {
 
         // Stores the attempt
         attemptRepository.save(checkedAttempt);
+
+        // Communicate the result via Event
+        eventDispatcher.send(
+                new MultiplicationSolvedEvent(
+                        checkedAttempt.getId(), checkedAttempt.getUser().getId(), checkedAttempt.isCorrect()));
 
         return isCorrect;
     }
