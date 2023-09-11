@@ -1,12 +1,13 @@
-package math.wondo;
+package math.wondo.gamification;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebAppApplication {
+public class GamificationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebAppApplication.class, args);
+		SpringApplication.run(GamificationApplication.class, args);
 	}
+
 }
